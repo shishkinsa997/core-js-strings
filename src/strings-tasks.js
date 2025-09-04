@@ -236,8 +236,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  const m = String(minutes).padStart(2, '0');
+  const s = String(seconds).padStart(2, '0');
+  return `${m}:${s}`;
 }
 
 /**
@@ -288,8 +290,11 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  if (substring === '') {
+    return true;
+  }
+  return str.includes(substring);
 }
 
 /**
@@ -306,8 +311,15 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const VOVELS = ['a', 'e', 'i', 'o', 'u', 'y'];
+  const arr = Array.from(str.toLowerCase());
+  let count = 0;
+
+  for (let i = 0; i < VOVELS.length; i += 1) {
+    count += arr.filter((item) => item === VOVELS[i]).length;
+  }
+  return count;
 }
 
 /**
