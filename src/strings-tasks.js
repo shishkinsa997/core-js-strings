@@ -274,8 +274,8 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
@@ -534,8 +534,34 @@ function encodeToRot13(str) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const card = value.slice(0, -1);
+  const suit = value.slice(-1);
+
+  const x = () => {
+    if (card === 'A') return 1;
+    if (card === 'J') return 11;
+    if (card === 'Q') return 12;
+    if (card === 'K') return 13;
+    return Number(card);
+  };
+
+  const y = () => {
+    switch (suit) {
+      case '♣':
+        return 1;
+      case '♦':
+        return 2;
+      case '♥':
+        return 3;
+      case '♠':
+        return 4;
+      default:
+        return -1;
+    }
+  };
+
+  return x() + y() * 13 - 14;
 }
 
 module.exports = {
